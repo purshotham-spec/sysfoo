@@ -1,28 +1,28 @@
 pipeline{
+
 agent any
-tools
-{
+
+tools{
 maven 'Maven 3.6.3'
 }
-stages
-{
-stage('build')
-{
+
+stages{
+stage('build'){
 steps{
+echo 'compile maven app'
 sh 'mvn compile'
 }
 }
-
-stage('test')
-{
+stage('test'){
 steps{
-sh 'mvn test'
+echo 'test maven app'
+sh 'mvn clean test'
 }
 }
-stage('package')
-{
+stage('package'){
 steps{
-sh 'mvn package'
+echo 'package maven app'
+sh 'mvn package -DskipTests'
 }
 }
 }
